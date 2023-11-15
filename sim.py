@@ -1,7 +1,9 @@
 import sys
 from parsers.arg_parser import arg_parser
-from simulators.base_simulator import BranchSimulator
+from parsers.trace_parser import parse_traces_from_file
+from simulators.base_simulator import BranchSimulator, Prediction
 from simulators.smith_predictor import SmithBranchSimulator
+from simulators.stats_wrapper import StatTrackSimulator
 
 
 def cli_driver():
@@ -21,11 +23,22 @@ def cli_driver():
         print("Fatal error. Please try again.")
         sys.exit()
 
-    simulate(simulator)
+    branch_seq = parse_traces_from_file(config["trace_file"])
+
+    stat_track_middleware = StatTrackSimulator(simulator)
+
+    simulator = simulate(stat_track_middleware, branch_seq)
+
+    simulator.print_stats()
 
 
-def simulate(sim: "BranchSimulator"):
-    pass
+def simulate(sim: "BranchSimulator", branch_sequence: [(str, "Prediction")]):
+    for pair in branch_sequence:
+        (addr, factual_result) = pair
+        predicted_result = sim.predict(addr)
+        sim.update(addr, predicted_result, factual_result)
+
+    return sim
 
 
 if __name__ == "__main__":

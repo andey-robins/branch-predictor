@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "debug-smith-3b-20",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/sim.py",
+            "console": "integratedTerminal",
+            "args": ["smith", "3", "./provided/traces/20.txt"]
+        },
+        {
+            "name": "debug-smith-3b-gcc",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/sim.py",
+            "console": "integratedTerminal",
+            "args": ["smith", "3", "./provided/traces/gcc_trace.txt"]
+        },
+    ]
+}

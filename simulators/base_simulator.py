@@ -13,5 +13,9 @@ class BranchSimulator(ABC):
         pass
 
     @abstractmethod
-    def update(self, address: str, res: "Prediction") -> None:
+    def update(self, address: str, choice: "Prediction", actual: "Prediction") -> None:
+        pass
+
+    @abstractmethod
+    def print_stats(self) -> None:
         pass
