@@ -7,6 +7,10 @@ class SmithBranchSimulator(BranchSimulator):
     cutoff = 0
 
     def __init__(self, b):
+        """
+        The SmithBranchSimulator needs a single parameter, b, the number of bits to
+        use in the branch prediction counter.
+        """
         assert b <= 4 and b >= 1
         self.b = b
         # this initialize value is specified in the problem spec
