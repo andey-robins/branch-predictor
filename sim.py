@@ -30,6 +30,12 @@ def cli_driver():
 
     # perform simulation
     simulator = simulate(stat_track_middleware, branch_seq)
+
+    # special printing to match validation files
+    pretty_args = sys.argv[1:-1]
+    pretty_args.append(config["trace_file"].split("/")[-1])
+    print(f"COMMAND\n./sim {' '.join(pretty_args)}\nOUTPUT")
+
     simulator.print_stats()
 
 

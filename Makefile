@@ -57,19 +57,18 @@ zip:
 	@echo "Zip archive created as `sim_cache.zip`"
 
 diffs:
-	python3 sim_cache.py 16 1024 2 0 0 0 0 ./provided/traces/gcc_trace.txt > ./out/debug0_run.out
-	diff ./out/debug0_run.out ./provided/debug_runs/debug0.txt -w
-	python3 sim_cache.py 16 1024 1 0 0 0 0 ./provided/traces/perl_trace.txt > ./out/debug1_run.out
-	diff ./out/debug1_run.out ./provided/debug_runs/debug1.txt -w
-	python3 sim_cache.py 16 1024 2 0 0 1 0 ./provided/traces/gcc_trace.txt > ./out/debug2_run.out
-	diff ./out/debug2_run.out ./provided/debug_runs/debug2.txt -w
-	python3 sim_cache.py 16 1024 2 8192 4 0 0 ./provided/traces/gcc_trace.txt > ./out/debug3_run.out
-	diff ./out/debug3_run.out ./provided/debug_runs/debug3.txt -w
-	python3 sim_cache.py 16 1024 1 8192 4 0 0 ./provided/traces/go_trace.txt > ./out/debug4_run.out
-	diff ./out/debug4_run.out ./provided/debug_runs/debug4.txt -w
-	
-	python3 sim_cache.py 16 1024 1 8192 4 0 1 ./provided/traces/compress_trace.txt > ./out/debug6_run.out
-	diff ./out/debug6_run.out ./provided/debug_runs/debug6.txt -w
+	python3 sim.py smith 3 ./provided/traces/gcc_trace.txt > ./out/smith_3_gcc.out
+	python3 sim.py smith 1 ./provided/traces/jpeg_trace.txt > ./out/smith_1_jpeg.out
+	python3 sim.py smith 4 ./provided/traces/perl_trace.txt > ./out/smith_4_perl.out
+	diff -i -w ./provided/validation_runs/val_smith_1.txt ./out/smith_3_gcc.out
+	diff -i -w ./provided/validation_runs/val_smith_2.txt ./out/smith_1_jpeg.out
+	diff -i -w ./provided/validation_runs/val_smith_3.txt ./out/smith_4_perl.out
+	python3 sim.py bimodal 6 ./provided/traces/gcc_trace.txt > ./out/bimodal_6_gcc.out
+	python3 sim.py bimodal 12 ./provided/traces/gcc_trace.txt > ./out/bimodal_12_gcc.out
+	python3 sim.py bimodal 4 ./provided/traces/jpeg_trace.txt > ./out/bimodal_4_jpeg.out
+	diff -i -w ./provided/validation_runs/val_bimodal_1.txt ./out/bimodal_6_gcc.out
+	diff -i -w ./provided/validation_runs/val_bimodal_2.txt ./out/bimodal_12_gcc.out
+	diff -i -w ./provided/validation_runs/val_bimodal_3.txt ./out/bimodal_4_jpeg.out
 
 .PHONY: venv install clean
 
