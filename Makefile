@@ -69,6 +69,12 @@ diffs:
 	diff -i -w ./provided/validation_runs/val_bimodal_1.txt ./out/bimodal_6_gcc.out
 	diff -i -w ./provided/validation_runs/val_bimodal_2.txt ./out/bimodal_12_gcc.out
 	diff -i -w ./provided/validation_runs/val_bimodal_3.txt ./out/bimodal_4_jpeg.out
+	python3 sim.py gshare 9 3 ./provided/traces/gcc_trace.txt > ./out/gshare_9_3_gcc.out
+	python3 sim.py gshare 14 8 ./provided/traces/gcc_trace.txt > ./out/gshare_14_8_gcc.out
+	python3 sim.py gshare 11 5 ./provided/traces/jpeg_trace.txt > ./out/gshare_11_5_jpeg.out
+	diff -i -w ./provided/validation_runs/val_gshare_1.txt ./out/gshare_9_3_gcc.out
+	diff -i -w ./provided/validation_runs/val_gshare_2.txt ./out/gshare_14_8_gcc.out
+	diff -i -w ./provided/validation_runs/val_gshare_3.txt ./out/gshare_11_5_jpeg.out
 
 .PHONY: venv install clean
 
