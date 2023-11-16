@@ -4,6 +4,7 @@ from parsers.trace_parser import parse_traces_from_file
 from simulators.base_simulator import BranchSimulator, Prediction
 from simulators.smith_predictor import SmithBranchSimulator
 from simulators.stats_wrapper import StatTrackSimulator
+from simulators.bimodal_predictor import BimodalBranchSimulator
 
 
 def cli_driver():
@@ -14,7 +15,7 @@ def cli_driver():
     if config["mode"] == "smith":
         simulator = SmithBranchSimulator(config["b"])
     elif config["mode"] == "bimodal":
-        pass
+        simulator = BimodalBranchSimulator(config["m2"])
     elif config["mode"] == "gshare":
         pass
     elif config["mode"] == "hybrid":
