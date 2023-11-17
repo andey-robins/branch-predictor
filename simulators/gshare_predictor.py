@@ -40,6 +40,9 @@ class GshareBranchSimulator(BranchSimulator):
 
         self.prediction_table[idx] = prediction_counter
 
+        self.update_global_history(actual)
+
+    def update_global_history(self, actual: "Prediction"):
         self.g_hist.insert(0, "1" if actual == Prediction.TAKEN else "0")
         self.g_hist.pop()
         assert len(self.g_hist) == self.n

@@ -75,6 +75,8 @@ diffs:
 	diff -i -w ./provided/validation_runs/val_gshare_1.txt ./out/gshare_9_3_gcc.out
 	diff -i -w ./provided/validation_runs/val_gshare_2.txt ./out/gshare_14_8_gcc.out
 	diff -i -w ./provided/validation_runs/val_gshare_3.txt ./out/gshare_11_5_jpeg.out
+	python3 sim.py hybrid 8 14 10 5 ./provided/traces/gcc_trace.txt > ./out/hybrid_8_14_10_5_gcc.out
+	diff -i -w ./provided/validation_runs/val_hybrid_1.txt ./out/hybrid_8_14_10_5_gcc.out
 
 .PHONY: venv install clean
 

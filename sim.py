@@ -6,6 +6,7 @@ from simulators.smith_predictor import SmithBranchSimulator
 from simulators.stats_wrapper import StatTrackSimulator
 from simulators.bimodal_predictor import BimodalBranchSimulator
 from simulators.gshare_predictor import GshareBranchSimulator
+from simulators.hybrid_predictor import HybridBranchSimulator
 
 
 def cli_driver():
@@ -20,7 +21,9 @@ def cli_driver():
     elif config["mode"] == "gshare":
         simulator = GshareBranchSimulator(config["n"], config["m1"])
     elif config["mode"] == "hybrid":
-        pass
+        simulator = HybridBranchSimulator(
+            config["k"], config["n"], config["m1"], config["m2"]
+        )
     else:
         print("Fatal error. Please try again.")
         sys.exit()
