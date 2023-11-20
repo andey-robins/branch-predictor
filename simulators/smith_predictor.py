@@ -11,7 +11,9 @@ class SmithBranchSimulator(BranchSimulator):
         The SmithBranchSimulator needs a single parameter, b, the number of bits to
         use in the branch prediction counter.
         """
-        assert b <= 4 and b >= 1
+        # removed because we are required to use b values outside of the bounds
+        # we had guaranteed in the specification
+        # assert b <= 4 and b >= 1
         self.b = b
         # this initialize value is specified in the problem spec
         self.counter = 2 ** (b - 1)
