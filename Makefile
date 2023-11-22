@@ -53,8 +53,10 @@ run:
 	@echo "---\nEnd of execution."
 
 zip:
-	zip -r sim_cache.zip sim_cache.py cache/ behavior/ helpers/ Makefile README.md LICENSE
-	@echo "Zip archive created as `sim_cache.zip`"
+	rm -rf parsers/__pycache__
+	rm -rf simulators/__pycache__
+	zip -r project2.zip sim.py parsers/ simulators/ Makefile README.md LICENSE requirements.txt report.pdf
+	@echo "Zip archive created as `project2.zip`"
 
 diffs:
 	python3 sim.py smith 3 ./provided/traces/gcc_trace.txt > ./out/smith_3_gcc.out
